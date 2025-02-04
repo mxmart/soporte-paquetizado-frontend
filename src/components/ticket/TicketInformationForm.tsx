@@ -15,6 +15,7 @@ interface Props {
     ticketStatus: number;
 };
 
+
 export const TicketInformationForm = ({ userType, isTicketOpen, userInTicket }: Props) => {
 
     const { getValues, setValue, register } = useForm();
