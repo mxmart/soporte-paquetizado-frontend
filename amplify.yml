@@ -1,0 +1,27 @@
+version: 1
+# backend:
+#   phases:
+#     build:
+#       commands:
+#         - ln -fs /usr/local/bin/pip3.8 /usr/bin/pip3
+#         - ln -fs /usr/local/bin/python3.8 /usr/bin/python3
+#         - ln -fs /usr/local/bin/pip3.8 /usr/bin/pip
+#         - pip3 install --upgrade pip setuptools # not originally there, added to try to fix the issue in question
+#         - pip3 install pipenv
+#         - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*
