@@ -19,7 +19,10 @@ export default function CreateTicketPage() {
               <TicketForm userType={"customer"}/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

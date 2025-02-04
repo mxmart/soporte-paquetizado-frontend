@@ -19,7 +19,10 @@ export default function NotificationsPage() {
               <Notifications/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

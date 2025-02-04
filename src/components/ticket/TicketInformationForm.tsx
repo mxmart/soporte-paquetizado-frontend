@@ -40,7 +40,7 @@ export const TicketInformationForm = ({ userType, isTicketOpen, userInTicket }: 
             items={[]}
             setValue={ setValue }
             state='new'
-            value=''
+            value={0}
             disabled
         />
         <Input

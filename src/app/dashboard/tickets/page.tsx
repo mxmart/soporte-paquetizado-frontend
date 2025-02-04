@@ -19,7 +19,10 @@ export default function TicketsPage() {
               
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

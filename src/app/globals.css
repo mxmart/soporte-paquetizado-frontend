@@ -120,9 +120,10 @@
         color: var(--color-4);
     };
 
-    .option {
-        background-color: var(--color-9);
-    };
+    .option { background-color: var(--color-9);};
+    .option .icon { background-color: var(--color-1); }
+    .option span { color: var(--color-1); }
+    .icon-option { color: var(--color-9); }
 
     .subtitle{
         color:var(--color-21);

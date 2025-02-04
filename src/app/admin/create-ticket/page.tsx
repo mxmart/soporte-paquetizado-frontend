@@ -19,7 +19,10 @@ export default function CreateTicketPage() {
               <TicketForm userType={"admin"}/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={['administrador']}
+          type="admin"
+        />
     </div>
   );
 }

@@ -1,5 +1,7 @@
+import { auth } from "@/auth";
 import { Box, DashboardTitle, Options, UserForm } from "@/components";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: 'Cliente',
@@ -10,7 +12,11 @@ export const metadata: Metadata = {
     }
 };
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  
+  const user = await auth();
+  if( !user ) redirect('/admin');
+  
   return (
     <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between mt-7 gap-x-8">
         <Box>
@@ -19,10 +25,14 @@ export default function ProfilePage() {
               <UserForm
                 type="update"
                 userType="customer"
+                user={ user.user }
               />
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

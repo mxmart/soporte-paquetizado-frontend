@@ -6,15 +6,22 @@ import { Select } from '../inputs/Select';
 import { UploadImage } from '../UploadImage';
 import { RoleSelector } from './RoleSelector';
 import { Button } from '../Button';
+import { IUser } from '@/interfaces';
+import { positions } from '@/helpers';
 
 interface Props {
     type: 'new' | 'update';
     userType: 'admin' | 'customer';
+    user: IUser;
 };
 
-export const UserForm = ({ type, userType }: Props) => {
+type Inputs = {
+    user: IUser
+};
 
-    const { register, setValue } = useForm();
+export const UserForm = ({ type, userType, user }: Props) => {
+
+    const { register, setValue, getValues } = useForm<Inputs>({ defaultValues: { user }});
 
   return (
     <form className="w-full h-auto p-2 rounded-lg user-form">
@@ -38,15 +45,15 @@ export const UserForm = ({ type, userType }: Props) => {
                 placeholder='Nombre del titular'
                 state={ type }
                 type='text'
-                register={ register }
+                register={ register("user.name")}
             />
             <Select
                 label={`Puesto en ${ process.env.NEXT_PUBLIC_APP_NAME }`}
                 placeholder='Selecciona un puesto'
-                items={[]}
+                items={ positions }
                 name='name'
                 state={ type }
-                value=''
+                value={ getValues("user.position_id")}
                 setValue={ setValue }
             />
             <Input
@@ -54,14 +61,14 @@ export const UserForm = ({ type, userType }: Props) => {
                 placeholder='Correo electrónico'
                 state={ type }
                 type='email'
-                register={ register }
+                register={ register("user.email")}
             />
             <Input
                 label='Número telefónico:'
                 placeholder='(+52) Número telefónico'
                 state={ type }
                 type='text'
-                register={ register }
+                register={ register("user.cellphone")}
             />
         </div>
 

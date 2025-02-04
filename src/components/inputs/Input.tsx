@@ -12,7 +12,7 @@ interface Props {
     className?: string;
     hidden?: boolean;
     edit?: boolean;
-    register: UseFormRegister<any>
+    register: any
 };
 
 export const Input = ({ placeholder, state, type, className = '', disabled = false, label, hidden = false, edit = false, register }: Props) => {

@@ -19,7 +19,10 @@ export default function ManageAccountsPage() {
               
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={['administrador']}
+          type="admin"
+        />
     </div>
   );
 }

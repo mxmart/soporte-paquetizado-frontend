@@ -32,7 +32,7 @@ export const TicketForm = ({ userType }: Props) => {
                 setValue={setValue}
                 name=""
                 isReseted={false} 
-                value={''}
+                value={0}
             />
             <CheckSelect
                 label='Compartir con:'
@@ -62,7 +62,7 @@ export const TicketForm = ({ userType }: Props) => {
                 setValue={setValue}
                 name=""
                 isReseted={false} 
-                value={''}
+                value={0}
             />
             <Input
                 label='Descripción:'

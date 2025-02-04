@@ -13,7 +13,7 @@ interface Props {
     state: "new" | "update";
     name: string;
     isLoading?: boolean;
-    value: string;
+    value: number;
     isSubmitted?: boolean; 
     isReseted?: boolean;
     edit?: boolean;

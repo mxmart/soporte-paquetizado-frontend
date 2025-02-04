@@ -19,7 +19,10 @@ export default function SendSuggestionsPage() {
             <SendSuggestions/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

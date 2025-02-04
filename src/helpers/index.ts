@@ -10,3 +10,4 @@ export * from './ticket/formatDate';
 export * from './user/checkUserPermissions';
 
 export * from './removeQuotes';
+export * from './selectData';

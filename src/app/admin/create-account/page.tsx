@@ -1,4 +1,5 @@
 import { Box, DashboardTitle, Options, UserForm } from "@/components";
+import { IUser } from "@/interfaces";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +12,23 @@ export const metadata: Metadata = {
 };
 
 export default function CreateAccountPage() {
+
+  const user: IUser = {
+    name: "",
+    cellphone: "",
+    creation_date: new Date(),
+    cognito_sub: "",
+    company_id: 0,
+    company_name: "",
+    dashboard: "Administrativo",
+    email: "",
+    id: 0,
+    position_id: 0,
+    permissions: [],
+    profile_pic: "",
+    role_id: 0,
+  };
+
   return (
     <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between mt-7 gap-x-8">
         <Box>
@@ -19,10 +37,14 @@ export default function CreateAccountPage() {
               <UserForm
                 type="new"
                 userType="admin"
+                user={ user }
               />
-            </div>
+            </div> 
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="admin"
+        />
     </div>
   );
 } 

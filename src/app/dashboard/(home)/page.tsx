@@ -26,7 +26,10 @@ export default function CustomerPage() {
               <CustomerTickets/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={[]}
+          type="customer"
+        />
     </div>
   );
 }

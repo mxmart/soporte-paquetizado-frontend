@@ -19,7 +19,10 @@ export default function RegisterCompanyPage() {
               
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={['administrador']}
+          type="admin"
+        />
     </div>
   );
 }

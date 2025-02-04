@@ -21,7 +21,10 @@ export default function AdminPage() {
               <AdminTickets/>
             </div>
         </Box>
-        <Options/>
+        <Options
+          options={['administrador']}
+          type="admin"
+        />
     </div>
   );
 }
