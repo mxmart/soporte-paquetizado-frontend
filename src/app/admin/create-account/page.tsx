@@ -1,6 +1,8 @@
 import { Box, DashboardTitle, Options, UserForm } from "@/components";
+import { checkUserPermissions } from "@/helpers";
 import { IUser } from "@/interfaces";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: 'Administración',
@@ -11,10 +13,13 @@ export const metadata: Metadata = {
     }
 };
 
-export default function CreateAccountPage() {
+export default async function CreateAccountPage() {
+
+  const canAccess = await checkUserPermissions(['create-admin-agent']);
+  if( !canAccess ) redirect('/admin');
 
   const user: IUser = {
-    name: "",
+    account_holder: "",
     cellphone: "",
     creation_date: new Date(),
     cognito_sub: "",
@@ -22,10 +27,10 @@ export default function CreateAccountPage() {
     company_name: "",
     dashboard: "Administrativo",
     email: "",
-    id: 0,
+    id: 0, 
     position_id: 0,
     permissions: [],
-    profile_pic: "",
+    profile_picture: "",
     role_id: 0,
   };
 

@@ -4,18 +4,22 @@ import React, { useEffect, useState } from 'react'
 import { MenuItem } from './MenuItem';
 import { checkUserPermissions } from '@/helpers';
 import { SpinLoader } from '../SpinLoader';
+import { logout } from '@/services';
 
 interface Props {
     isOpen: boolean
 };
 
 const navOptions = [
-    { title: 'Dashboard',       callback: () => {}, href: '/dashboard',     permission: '' },
+    { title: 'Dashboard',       callback: () => {},         href: '/dashboard',         permission: '' },
+    { title: 'Perfíl',          callback: () => {},         href: '/dashboard/profile', permission: '' },
+    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',        permission: '' },
 ];
 
 const navOptionsAdmin = [
-    { title: 'Dashboard',       callback: () => {}, href: '/admin',         permission: '' },
-    { title: 'Perfíl',          callback: () => {}, href: '/admin/profile', permission: '' },
+    { title: 'Dashboard',       callback: () => {},         href: '/admin',         permission: '' },
+    { title: 'Perfíl',          callback: () => {},         href: '/admin/profile', permission: '' },
+    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',    permission: '' },
 ];
 
 export const Menu = ({ isOpen }: Props) => {

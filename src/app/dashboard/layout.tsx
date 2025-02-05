@@ -7,8 +7,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     const session = await auth();
     if( !session ) redirect('/auth/login');
   
-    const name = session.user.name || "Usuario";
-    const image = session.user.profile_pic || "/images/User_image_default.png";
+    const name = session.user.account_holder || "Usuario";
+    const image = session.user.profile_picture || "/images/User_image_default.png";
 
   return (
     <div className="w-full flex">

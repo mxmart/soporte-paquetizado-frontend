@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { SpinLoader } from '../SpinLoader';
+import { logout } from '@/services';
 
 interface Props {
     id: number;
@@ -20,6 +21,10 @@ export const SidebarItem = ({ id, icon, href, permission, title }: Props) => {
 
     const { prefetch } = useRouter();
 
+    const onClickSidebarItem = () => {
+        if( id === 6 ) return logout();
+    };
+
   return (
     <>
     {
@@ -31,6 +36,7 @@ export const SidebarItem = ({ id, icon, href, permission, title }: Props) => {
             prefetch
             onMouseEnter={ () => prefetch(href || '/')}
             title={ title }
+            onClick={ onClickSidebarItem }
         >
             <Image
                 src={`/images/${icon}`}

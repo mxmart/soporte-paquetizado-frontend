@@ -225,7 +225,8 @@
 
     /*User Form*/
     .user-form h2 { color: var(--color-6); }
-    .user-form .active-since { color: var(--color-6); }
+    .user-form .active-since { color: var(--color-6); };
+    .loading-description-role { background-color: var(--color-10); }
 
     /*Input*/
     .input {

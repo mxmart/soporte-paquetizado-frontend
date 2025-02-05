@@ -19,7 +19,7 @@ export const userChangePassword = async({ username, password }: Props) => {
         toast.loading('Cambiando contraseña...')
         const response = await axios.post( url, { username, password });
         toast.dismiss()
-        toast.success( response.data.message )
+        toast.success( response.data.resp.message )
         
     } catch (error: any) {
 

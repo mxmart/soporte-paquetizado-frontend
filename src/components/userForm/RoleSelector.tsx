@@ -3,6 +3,7 @@ import { useClickOutside } from '@/hooks';
 import React, { useEffect, useState } from 'react'
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { SpinLoader } from '../SpinLoader';
+import { UseFormSetValue } from 'react-hook-form';
 
 interface Props {
     disabled?: boolean;
@@ -12,25 +13,80 @@ interface Props {
     placeholder: string;
     isLoading?: boolean;
     items: Item[];
+    value: number;
+    name: string;
+    isSubmitted?: boolean; 
+    isReseted?: boolean;
+    setValue: UseFormSetValue<any>;
 };
 
 interface Item {
     id: number;
     description: string;
+    label: string;
 };
 
-export const RoleSelector = ({ disabled = false, edit = false, state, label, placeholder, isLoading, items }: Props) => {
+export const RoleSelector = ({ disabled = false, isReseted, isSubmitted, edit = false, state, label, placeholder, isLoading, items, setValue, name, value }: Props) => {
 
     const { isOpen, menuRef, setIsOpen } = useClickOutside();
     const [canWrite, setCanWrite] = useState<boolean>( true );
     const [inputValue, setInputValue] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [isMounted, setIsMounted] = useState(false);
 
-    const handleOption = ( option: Item ) => {};
+    const handleOption = ( option: Item ) => {
+        setValue(`${ name }`, Number(option.id));
+        setInputValue( option.label );
+        setDescription( option.description );
+        setIsOpen( false ); 
+    };
+    
+    useEffect(() => {
+        if( state === 'update' ){
+            if( isLoading ){
+                setInputValue('Cargando...');
+            };
+        }
+        if (value && setValue && !isLoading) {
+            const input = items.find(item => item.id === Number(value));
+            if (input) {
+                setInputValue(input.label);
+                setValue(`${ name }`, Number(input.id));
+                setDescription( input.description );
+            }else{
+            }
+        }
+    }, [value, setValue, items, isLoading, name, state, isMounted]);
+
+    useEffect(() => {
+        setIsMounted( true );
+        return () => { setIsMounted( false ) }
+    }, []);
 
     useEffect(() => {
         if( state === 'update' ) return setCanWrite( edit );
         if( state === 'new' )    return setCanWrite( true );
     }, [ edit ]);
+
+    useEffect(() => {
+        setInputValue("");
+        setValue!(`${ name }`, "");
+        setDescription("");
+    }, [ isReseted ]);
+
+    useEffect(() => {
+        if(value){
+            const input = items.find(item => item.id === Number(value));
+                if (input) {
+                    setInputValue(input.label);
+                    setDescription( input.description );
+                    setValue!(`${ name }`, Number(input.id));
+                }
+            }
+        else{
+            setInputValue('');
+        }
+    }, [isSubmitted === true, isReseted === true ]);
 
   return (
     <div ref={ menuRef } className={`flex flex-col gap-2 w-full max-w-72 lg:max-w-80 role-selector input mt-4`} onClick={ () => setIsOpen( canWrite && !disabled ? !isOpen : false ) }>
@@ -54,17 +110,23 @@ export const RoleSelector = ({ disabled = false, edit = false, state, label, pla
                         <span onClick={ () => handleOption( item ) }
                             key={ item.id } 
                             className='hover:underline text-white dropdown-text text-xs'>
-                            { item.description }
+                            { item.label }
                         </span>
                         ))
                     )
                 }
             </div>
         </div>
-        <p className='text-xs'>
-            Esta es una descripcion del rol del usuario seleccionado, sirve para mostrarle al usuario
-            de forma resumida las funciones mas importantes del rol
-        </p>
+        {
+            isLoading
+            ? (
+                <>
+                <div className="w-full h-3 loading-description-role rounded-2xl animate-pulse"></div>
+                <div className="w-full h-3 loading-description-role rounded-2xl animate-pulse"></div>
+                <div className="w-full h-3 loading-description-role rounded-2xl animate-pulse"></div>
+                </>
+            ) : <p className='text-xs'>{ description }</p>
+        }
     </div>
   )
 }

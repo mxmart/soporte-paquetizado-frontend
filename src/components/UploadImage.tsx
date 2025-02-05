@@ -1,6 +1,8 @@
 'use client';
+import { toBase64 } from '@/helpers';
 import Image from 'next/image';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
+import { UseFormSetValue } from 'react-hook-form';
 import { MdUpload } from 'react-icons/md';
 
 interface Props {
@@ -9,20 +11,36 @@ interface Props {
     text: string;
     edit?: boolean;
     state: "new" | "update";
+    name: string;
+    setValue: UseFormSetValue<any>;
+    isSubmitted?: boolean;
+    isReseted?: boolean;
 };
 
-export const UploadImage = ({ defaultImage = '/images/User_image_default.png', image = '', text, edit = false, state }: Props) => {
+export const UploadImage = ({ defaultImage = '/images/User_image_default.png', image = '', text, edit = false, state, name, setValue, isReseted, isSubmitted }: Props) => {
 
     const [ imageData, setImageData ] = useState<{ name: string, image: string, default: string }>({ name: 'Seleccione un archivo', image: image, default: defaultImage });
     const [canUpdate, setCanUpdate] = useState<boolean>( edit );
     const inputRef: RefObject<HTMLInputElement> = useRef<any>(null);
 
+    const onImageChange = async( event: React.ChangeEvent<HTMLInputElement> ) => {
+        if( !canUpdate ) return;
+        if( event.target.files![0] ) {
+            const base64Image = await toBase64(event.target.files![0]) as string;
+            setImageData({ name: event.target.files![0].name, image: base64Image, default: defaultImage });
+            setValue!(`${ name }`, base64Image);
+            event.target.value = '';
+        };
+    };
+    
+    useEffect(() => {
+        setImageData({ name: 'Seleccione un archivo', image: image, default: defaultImage });
+    }, [isSubmitted === true, isReseted === true ]);
+    
     useEffect(() => {
         if( state === 'update' ) return setCanUpdate( edit );
         if( state === 'new' ) return setCanUpdate( true );
     }, [ edit ]);
-
-    const onImageChange = async( event: React.ChangeEvent<HTMLInputElement> ) => {};
 
   return (
     <div className="flex flex-col md:flex-row w-full max-w-72 lg:max-w-80 justify-center items-center md:justify-start gap-5 upload-image">

@@ -41,17 +41,22 @@ export const Select = ({ items = [], name, placeholder, setValue, state, value, 
       }, []);
 
       const handleOption = ( option: Item ) => {
-        setValue(`${ name }`, String(option.id));
+        setValue(`${ name }`, Number(option.id));
         setInputValue( option.description );
         setIsOpen( false ); 
     };
 
     useEffect(() => {
+        if( state === 'update' ){
+            if( isLoading ){
+                setInputValue('Cargando...');
+            };
+        }
         if (value && setValue && !isLoading) {
             const input = items.find(item => item.id === Number(value));
             if (input) {
                 setInputValue(input.description);
-                setValue(`${ name }`, String(input.id));
+                setValue(`${ name }`, Number(input.id));
             }else{
             }
         }
@@ -72,12 +77,12 @@ export const Select = ({ items = [], name, placeholder, setValue, state, value, 
             const input = items.find(item => item.id === Number(value));
             if (input) {
                 setInputValue(input.description);
-                setValue!(`${ name }`, String(input.id));
+                setValue!(`${ name }`, Number(input.id));
             }
         }
         else{
             setInputValue('');}
-    }, [isSubmitted === true || isReseted === true ]);
+    }, [isSubmitted === true, isReseted === true ]);
   
     return (
     <div ref={ menuRef } className={`${ hidden ? 'hidden' : 'flex' } flex-col gap-2 w-full max-w-72 lg:max-w-80 select input`} onClick={ () => setIsOpen( canWrite && !disabled ? !isOpen : false ) }>

@@ -8,6 +8,11 @@ export * from './ticket/formatDate';
 
 //User
 export * from './user/checkUserPermissions';
+export * from './user/formatUsers';
+export * from './user/validateCellphone';
+export * from './user/cognitoSub';
+export * from './user/activeSince';
 
 export * from './removeQuotes';
 export * from './selectData';
+export * from './toBase64';
