@@ -1,4 +1,4 @@
-import { cognitoSub } from "@/helpers";
+import { cognitoSub, formatUsers } from "@/helpers";
 import { IUser } from "@/interfaces";
 import axios from "axios";
 import { toast } from "sonner";
@@ -23,11 +23,12 @@ export const createAccount = async({ user }: Props) => {
     if( !cognito_sub ) return;
     
     const url = `${process.env.NEXT_PUBLIC_API_USERS_URL}/createAdminOrAgent?cognito_sub=${ cognito_sub }`;
+    const { account_holder, email, cellphone, profile_picture, position_id, role_id, company_id } = formatUsers( user );
     
     try {
 
         toast.loading('Creando usuario...');
-        const response = await axios.post(url, user);
+        const response = await axios.post(url, { account_holder, email, cellphone, profile_picture, position_id, role_id, company_id });
         toast.dismiss();
         toast.success('Usuario creado correctamente');
     
