@@ -1,10 +1,19 @@
 export function cleanText(input: string): string {
 
-    // Utilizar una expresión regular para eliminar la fecha, hora y el AM/PM
-    const sinFecha = input.replace(/\d{1,2}\/\d{1,2}\/\d{4}, \d{1,2}:\d{2}:\d{2} (AM|PM)/, '');
+    const isProduction = process.env.NEXT_PUBLIC_STAGE === 'dev' ? false : true;
 
-    // Eliminar las comas sobrantes
-    const resultado = sinFecha.replace(/,/g, '').trim();
+    if( isProduction ){
 
-  return resultado;
+      const sinFecha = input.replace(/\d{1,2}\/\d{1,2}\/\d{4}, \d{1,2}:\d{2}:\d{2} (AM|PM)/, '');
+      const resultado = sinFecha.replace(/,/g, '').trim();
+      return resultado;
+
+    } else {
+
+      const sinFecha = input.replace(/\d{1,2}\/\d{1,2}\/\d{4}, \d{2}:\d{2}:\d{2}/, '');
+      const resultado = sinFecha.replace(/,/g, '').trim();
+      return resultado;
+
+    }
+
 }
