@@ -1,61 +1,49 @@
-'use client';
+'use client'
 import { toBase64 } from '@/helpers';
 import Image from 'next/image';
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form';
 import { MdUpload } from 'react-icons/md';
 
 interface Props {
     image?: string;
     defaultImage?: string;
-    text: string;
-    edit?: boolean;
-    state: "new" | "update";
     name: string;
     setValue: UseFormSetValue<any>;
-    isSubmitted?: boolean;
-    isReseted?: boolean;
 };
 
-export const UploadImage = ({ defaultImage = '/images/User_image_default.png', image = '', text, edit = false, state, name, setValue, isReseted, isSubmitted }: Props) => {
+export const UploadCoverImage = ({ defaultImage = '/images/Banner_Login_V2.png', image = '', setValue, name }: Props) => {
 
     const [ imageData, setImageData ] = useState<{ name: string, image: string, default: string }>({ name: 'Seleccione un archivo', image: image, default: defaultImage });
-    const [canUpdate, setCanUpdate] = useState<boolean>( edit );
     const inputRef: RefObject<HTMLInputElement> = useRef<any>(null);
 
     const onImageChange = async( event: React.ChangeEvent<HTMLInputElement> ) => {
-        if( !canUpdate ) return;
         if( event.target.files![0] ) {
             const base64Image = await toBase64(event.target.files![0]) as string;
             setImageData({ name: event.target.files![0].name, image: base64Image, default: defaultImage });
             setValue!(`${ name }`, base64Image);
             event.target.value = '';
         };
-    }; 
-    
-    useEffect(() => {
-        setImageData({ name: 'Seleccione un archivo', image: image, default: defaultImage });
-    }, [isSubmitted === true, isReseted === true ]);
-    
-    useEffect(() => {
-        if( state === 'update' ) return setCanUpdate( edit );
-        if( state === 'new' ) return setCanUpdate( true );
-    }, [ edit ]);
+    };
 
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-72 lg:max-w-80 justify-center items-center md:justify-start gap-5 upload-image">
-        <div className={`w-24 h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
+    <>
+    <h2 className='text-center xl:text-start text-[13px] font-semibold'>Selección de imagen de inicio de sesión:</h2>
+    <div className="flex flex-col md:flex-row w-full lg:max-w-[500px] justify-center items-center md:justify-start gap-5 upload-image mt-3 p-4">
+        <div className={`w-80 h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
             <Image
                 className={`rounded-xl object-contain h-full w-full`}
                 src={ imageData.image || imageData.default }
                 width={ 100 } 
                 height={ 100 }
-                alt={"Logo Empresa"} 
+                alt={"Logo Portada"} 
             />
         </div>
         <div className="flex flex-col justify-evenly">
-            <label className={`text-sm font-semibold mb-2 text-center md:text-start`}>{ text }</label>
-            <div onClick={ canUpdate ? () => inputRef.current?.click() : () => {} } className={`w-52 h-8 rounded-lg flex items-center justify-between ${ canUpdate && 'cursor-pointer' } px-3 font-normal shadow`}>
+            <label className={`text-xs font-medium mb-2 text-center md:text-start`}>
+                Seleccione una imagen de 1920px x 700px
+            </label>
+            <div onClick={ () => inputRef.current?.click() } className={`w-48 h-8 mx-auto rounded-lg flex items-center justify-between cursor-pointer px-3 font-normal shadow`}>
                 <span 
                     className={` text-xs`} 
                     style={{ border: 'none' }}
@@ -63,7 +51,7 @@ export const UploadImage = ({ defaultImage = '/images/User_image_default.png', i
                     { image === '' ? 'Seleccione un archivo' : imageData.name  }
                 </span>
                 <button type='button' className={`w-6 h-6 text-sm rounded-full items-center justify-center flex`}>
-                    <MdUpload />
+                    <MdUpload/>
                 </button>
             </div>
             <input
@@ -75,5 +63,6 @@ export const UploadImage = ({ defaultImage = '/images/User_image_default.png', i
             />
         </div>
     </div>
+    </>
   )
 }

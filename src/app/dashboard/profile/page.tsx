@@ -4,12 +4,12 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-    title: 'Cliente',
-    description: `Perfil del cliente`,
-    openGraph: {
-        title: 'Cliente',
-        description: `Perfil del cliente`,
-    }
+  title: 'Perfíl',
+  description: `Perfil del usuario`,
+  openGraph: {
+      title: 'Perfíl',
+      description: `Perfil del usuario`,
+  }
 };
 
 export default async function ProfilePage() {

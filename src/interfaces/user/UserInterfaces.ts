@@ -30,6 +30,10 @@ export interface IEmail {
     email: string
 };
 
+export interface ICellphone {
+    cellphone: string
+};
+
 export interface IRol {
     id:          number;
     description: string;

@@ -1,5 +1,5 @@
 'use client'
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { MenuItem } from './MenuItem';
 import { checkUserPermissions } from '@/helpers';
@@ -11,15 +11,16 @@ interface Props {
 };
 
 const navOptions = [
-    { title: 'Dashboard',       callback: () => {},         href: '/dashboard',         permission: '' },
-    { title: 'Perfíl',          callback: () => {},         href: '/dashboard/profile', permission: '' },
-    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',        permission: '' },
+    { title: 'Dashboard',       callback: () => {},         href: '/dashboard',         permission: ''                          },
+    { title: 'Perfíl',          callback: () => {},         href: '/dashboard/profile', permission: ''                          },
+    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',        permission: ''                          },
 ];
 
 const navOptionsAdmin = [
-    { title: 'Dashboard',       callback: () => {},         href: '/admin',         permission: '' },
-    { title: 'Perfíl',          callback: () => {},         href: '/admin/profile', permission: '' },
-    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',    permission: '' },
+    { title: 'Dashboard',       callback: () => {},         href: '/admin',                         permission: ''                              },
+    { title: 'Perfíl',          callback: () => {},         href: '/admin/profile',                 permission: ''                              },
+    { title: 'Configuración',   callback: () => {},         href: '/admin/platform-configuration',  permission: 'platform-configuration'        },
+    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',                    permission: ''                              },
 ];
 
 export const Menu = ({ isOpen }: Props) => {

@@ -4,10 +4,10 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-    title: 'Administración',
+    title: 'Perfíl',
     description: `Perfil del usuario`,
     openGraph: {
-        title: 'Administración',
+        title: 'Perfíl',
         description: `Perfil del usuario`,
     }
 };

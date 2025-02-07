@@ -26,48 +26,8 @@
     --color-21: #7691C4;
     --color-22: #989898;
     --color-23: #0E89B9;
-
-    /*Text*/
-    .text-1 { color: var(--color-1); };
-    .text-2 { color: var(--color-2); };
-    .text-3 { color: var(--color-3); };
-    .text-4 { color: var(--color-4); };
-    .text-5 { color: var(--color-5); };
-    .text-6 { color: var(--color-6); };
-    .text-7 { color: var(--color-7); };
-    .text-8 { color: var(--color-8); };
-    .text-9 { color: var(--color-9); };
-    .text-10 { color: var(--color-10); };
-    .text-11 { color: var(--color-11); };
-    .text-12 { color: var(--color-12); };
-    .text-13 { color: var(--color-13);};
-    .text-14 { color: var(--color-14); };
-    .text-15 { color: var(--color-15); };
-    .text-16 { color: var(--color-16); };
-    .text-17 { color: var(--color-17); };
-    .text-18 { color: var(--color-18); };
-    .text-19 { color: var(--color-19); };
-
-    /*Backgrounds*/
-    .background-1 { background-color: var(--color-1); };
-    .background-2 { background-color: var(--color-2); };
-    .background-3 { background-color: var(--color-3); };
-    .background-4 { background-color: var(--color-4); };
-    .background-5 { background-color: var(--color-5); };
-    .background-6 { background-color: var(--color-6); };
-    .background-7 { background-color: var(--color-7); };
-    .background-8 { background-color: var(--color-8); };
-    .background-9 { background-color: var(--color-9); };
-    .background-10 { background-color: var(--color-10); };
-    .background-11 { background-color: var(--color-11); };
-    .background-12 { background-color: var(--color-12); };
-    .background-13 { background-color: var(--color-13); };
-    .background-14 { background-color: var(--color-14); };
-    .background-15 { background-color: var(--color-15); };
-    .background-16 { background-color: var(--color-16); };
-    .background-17 { background-color: var(--color-17); };
-    .background-18 { background-color: var(--color-18); };
-    .background-19 { background-color: var(--color-19); };
+    --color-24: #F7FAFB;
+    --color-25: #3D91B2;
 
     background-color: var(--color-2);
 
@@ -94,6 +54,8 @@
         background-color: var(--color-1);
     };
 
+    .box-withTabs { border-top: 1px solid var(--color-15); }
+
     .button {
         background: linear-gradient(to right, var(--color-19), var(--color-9));
         color: var(--color-1);
@@ -119,6 +81,8 @@
     .dashboard-title { 
         color: var(--color-4);
     };
+
+    .dashboard-title-background { background-color: var(--color-1); }
 
     .option { background-color: var(--color-9);};
     .option .icon { background-color: var(--color-1); }
@@ -312,6 +276,14 @@
         }
     
       }
+
+      .tab-text { color: var(--color-5); }
+      .tab-active { background-color: var(--color-1); }
+      .tab:hover { background-color: var(--color-1); }
+      .tab-background { background-color: var(--color-24); }
+
+      /*Configuration page*/
+      .configuration-page h2 { color: var(--color-25); }
 
 
 
