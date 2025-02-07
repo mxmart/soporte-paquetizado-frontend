@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { montserrat } from "@/config";
 import { Providers } from "@/providers/Providers";
+import { getTheme } from "@/services";
 
 export const metadata: Metadata = {
   title: {
@@ -11,11 +12,14 @@ export const metadata: Metadata = {
   description: 'Description',
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
+  const theme = await getTheme();
+
   return (
     <html suppressHydrationWarning>
       {/* <link rel="icon" href="/favicon.png" sizes="64x64" /> */}
-      <body className={`${ montserrat.className } theme-evolvenx`}>
+      <body className={`${ montserrat.className } ${ theme || 'theme-evolvenx' }`}>
         <Providers>
           { children }
         </Providers>

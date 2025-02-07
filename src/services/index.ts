@@ -18,3 +18,4 @@ export * from './config/uploadLogo';
 export * from './config/getLogo';
 export * from './config/getCoverImage';
 export * from './config/uploadCoverImage';
+export * from './config/getTheme';
