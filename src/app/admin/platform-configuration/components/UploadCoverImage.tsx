@@ -1,18 +1,21 @@
 'use client'
+import { IsLoadingLogo } from '@/components/header/IsLoadingLogo';
 import { toBase64 } from '@/helpers';
+import { uploadCoverImage } from '@/services';
 import Image from 'next/image';
-import React, { RefObject, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form';
 import { MdUpload } from 'react-icons/md';
 
 interface Props {
-    image?: string;
+    image?: string; 
     defaultImage?: string;
     name: string;
+    isLoading?: boolean;
     setValue: UseFormSetValue<any>;
-};
+}; 
 
-export const UploadCoverImage = ({ defaultImage = '/images/Banner_Login_V2.png', image = '', setValue, name }: Props) => {
+export const UploadCoverImage = ({ defaultImage = '/images/Banner_Login_V2.png', image = '', setValue, name, isLoading }: Props) => {
 
     const [ imageData, setImageData ] = useState<{ name: string, image: string, default: string }>({ name: 'Seleccione un archivo', image: image, default: defaultImage });
     const inputRef: RefObject<HTMLInputElement> = useRef<any>(null);
@@ -23,21 +26,31 @@ export const UploadCoverImage = ({ defaultImage = '/images/Banner_Login_V2.png',
             setImageData({ name: event.target.files![0].name, image: base64Image, default: defaultImage });
             setValue!(`${ name }`, base64Image);
             event.target.value = '';
+
+            await uploadCoverImage({ file: base64Image });
         };
     };
+
+    useEffect(() => {
+        setImageData({ name: 'Seleccione un archivo', image: image, default: defaultImage });
+    }, [ isLoading ]);
 
   return (
     <>
     <h2 className='text-center xl:text-start text-[13px] font-semibold'>Selección de imagen de inicio de sesión:</h2>
     <div className="flex flex-col md:flex-row w-full lg:max-w-[500px] justify-center items-center md:justify-start gap-5 upload-image mt-3 p-4">
         <div className={`w-80 h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
-            <Image
+        { 
+            isLoading
+            ? <IsLoadingLogo/>
+            : <Image
                 className={`rounded-xl object-contain h-full w-full`}
                 src={ imageData.image || imageData.default }
                 width={ 100 } 
                 height={ 100 }
                 alt={"Logo Portada"} 
             />
+        }
         </div>
         <div className="flex flex-col justify-evenly">
             <label className={`text-xs font-medium mb-2 text-center md:text-start`}>

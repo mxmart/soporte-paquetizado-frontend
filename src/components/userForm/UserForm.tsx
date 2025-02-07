@@ -11,9 +11,11 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useFormControl } from '@/hooks';
 import { userFormValidator } from '@/validators';
-import { createAccount, getPositions, getRoles } from '@/services';
+import { createAccount, getPositions, getRoles, updateProfileInformation } from '@/services';
 import { useQuery } from '@tanstack/react-query';
-import { activeSince } from '@/helpers';
+import { activeSince, areObjectsEqual } from '@/helpers';
+import { RiPencilFill } from 'react-icons/ri';
+import { toast } from 'sonner';
 
 interface Props {
     type: 'new' | 'update';
@@ -30,7 +32,6 @@ export const UserForm = ({ type, userType, user }: Props) => {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const { refresh } = useRouter();
     const { update } = useSession();
-
     
     const { data: positions, isLoading: isLoadingPositions } = useQuery({ queryKey: ['positions'], queryFn: getPositions });
     const { data: roles, isLoading: isLoadingRoles } = useQuery({ queryKey: ['roles'], queryFn: () => getRoles({ type: 'admin' })});
@@ -40,7 +41,9 @@ export const UserForm = ({ type, userType, user }: Props) => {
  
     const onSubmit: SubmitHandler<Inputs> = async({ user }) => {
         
-        const currentUser = currentValues; 
+        const currentUser = currentValues;
+        const isEquals = areObjectsEqual( currentUser, user );
+        if( isEquals ) return toast('No se han realizado cambios');
         
         try {
 
@@ -50,9 +53,17 @@ export const UserForm = ({ type, userType, user }: Props) => {
             if( type === 'new' ){
                 await createAccount({ user });
                 handleReset();
-            };
+            }; 
 
-            if( type === "update" ){};
+            if( type === "update" ){
+                const profile_picture = await updateProfileInformation({ user });
+                if( profile_picture === null ){
+                    await update({ ...user });
+                } else {
+                    await update({ ...user, profile_picture });
+                    refresh();
+                };
+            };
 
             setEdit( false );
             setIsSubmitted( false );
@@ -73,6 +84,12 @@ export const UserForm = ({ type, userType, user }: Props) => {
 
   return (
     <form onSubmit={handleSubmit( onSubmit )} className="w-full h-auto p-2 rounded-lg user-form">
+        
+        <button onClick={ () => setEdit( !edit ) } type='button' className={`button items-center mb-4 md:mb-0 md:mx-0 mx-auto md:ms-auto rounded-lg px-2 py-2 text-xs gap-x-1 ${ type === 'update' && !edit ? 'flex' : 'hidden' }`}>
+            <RiPencilFill />
+            Actualizar información
+        </button>
+
         <div className="flex flex-wrap gap-5 justify-center w-full mt-4 mb-10 items-start">
             <UploadImage
                 text='Imagen de perfil:'
@@ -140,7 +157,7 @@ export const UserForm = ({ type, userType, user }: Props) => {
         <div className="flex mt-16 w-full justify-between pb-2 items-start">
             <span className={`text-sm active-since ${ type === 'new' ? 'hidden' : 'flex' }`}>Activo desde { activeSince(user?.creation_date)}</span>
             <span className={`text-sm active-since ${ type === 'update' ? 'hidden' : 'flex' }`}></span>
-            <div className='flex gap-x-2'>
+            <div className={`${ type === "update" && !edit ? 'hidden' : 'flex' } gap-x-2`}>
                 <Button disabled={ isSubmitted } onClick={ handleReset } text='Cancelar' type='button'/>
                 <Button disabled={ isSubmitted } text='Guardar' type='submit'/>
             </div>

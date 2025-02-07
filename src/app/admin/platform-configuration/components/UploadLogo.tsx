@@ -15,7 +15,7 @@ interface Props {
     isLoading?: boolean;
     setValue: UseFormSetValue<any>;
 };
-
+ 
 export const UploadLogo = ({ defaultImage = '/images/evolvenx_not.png', image = '', setValue, name, isLoading }: Props) => {
 
     const [ imageData, setImageData ] = useState<{ name: string, image: string, default: string }>({ name: 'Seleccione un archivo', image: image, default: defaultImage });
@@ -32,8 +32,6 @@ export const UploadLogo = ({ defaultImage = '/images/evolvenx_not.png', image = 
 
             await uploadLogo({ file: base64Image });
             setLogo( base64Image );
-            //TODO: Peticion al back para actualizar el logo
-            //TODO: Actualizar el estado global para mostrar el logo
         };
     };
 
@@ -46,7 +44,7 @@ export const UploadLogo = ({ defaultImage = '/images/evolvenx_not.png', image = 
     <h2 className='text-center xl:text-start text-[13px] font-semibold mt-10'>Selección de logotipo:</h2>
     <div className="flex flex-col md:flex-row w-full lg:max-w-[450px] justify-center items-center md:justify-start gap-5 upload-image mt-3 p-4">
         <div className={`w-80 h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
-            {
+            { 
                 isLoading
                 ? <IsLoadingLogo/>
                 : <Image
