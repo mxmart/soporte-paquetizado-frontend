@@ -4,6 +4,7 @@ export * from './sidebar/Margin';
 
 //Header
 export * from './header/Header';
+export * from './header/Logo';
 
 //Layout
 export * from './layout/Box';
@@ -42,3 +43,4 @@ export * from './BoxWidget';
 export * from './DashboardTitle';
 export * from './SpinLoader';
 export * from './Button';
+export * from './Tab';

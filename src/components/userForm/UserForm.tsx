@@ -35,12 +35,12 @@ export const UserForm = ({ type, userType, user }: Props) => {
     const { data: positions, isLoading: isLoadingPositions } = useQuery({ queryKey: ['positions'], queryFn: getPositions });
     const { data: roles, isLoading: isLoadingRoles } = useQuery({ queryKey: ['roles'], queryFn: () => getRoles({ type: 'admin' })});
     
-    const { register, setValue, getValues, reset, handleSubmit, watch } = useForm<Inputs>({ defaultValues: { user }});
+    const { register, setValue, getValues, reset, handleSubmit } = useForm<Inputs>({ defaultValues: { user }});
     const { handleReset, setEdit, isReseted, edit, currentValues } = useFormControl({ values: user, reset, setValue, name: 'user' });
  
     const onSubmit: SubmitHandler<Inputs> = async({ user }) => {
         
-        const currentUser = currentValues;
+        const currentUser = currentValues; 
         
         try {
 

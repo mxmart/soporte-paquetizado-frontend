@@ -5,10 +5,10 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-    title: 'Administración',
+    title: 'Crear nueva cuenta',
     description: `Creación de cuentas para administradores o agentes`,
     openGraph: {
-        title: 'Administración',
+        title: 'Crear nueva cuenta',
         description: `Creación de cuentas para administradores o agentes`,
     }
 };

@@ -1,6 +1,6 @@
 import { formatUsers, isCellphone } from "@/helpers";
 import { IUser } from "@/interfaces";
-import { getEmails, getPositions, getRoles } from "@/services";
+import { getCellphones, getEmails, getPositions, getRoles } from "@/services";
 import { toast } from "sonner";
 
 interface Props {
@@ -13,7 +13,7 @@ export const userFormValidator = async({ user, currentUser }: Props) => {
     const { account_holder, position_id, profile_picture, email, cellphone } = formatUsers( user );
     const { cellphone: currentCellphone, email: currentEmail } = formatUsers( currentUser );
 
-    const isValid = new Promise( async(resolve, reject) => {
+    const isValid = new Promise( async(resolve, reject) => { 
 
         if (!account_holder) {
             reject("El campo Titular de la cuenta es obligatorio.");
@@ -49,7 +49,13 @@ export const userFormValidator = async({ user, currentUser }: Props) => {
             reject(`El campo rol es obligatorio.`);
         };
 
-        //TODO: VALIDAR CELULARES REPETIDOS
+        const cellphones = await getCellphones();
+        if (currentCellphone !== cellphone) {
+            const existsCellphone = cellphones?.find((c) => c.cellphone == cellphone);
+            if (existsCellphone) {
+                reject("El número telefónico ya está registrado.");
+            };
+        };
 
         const positions = await getPositions();
         const position = positions?.find((pos) => pos.id === position_id);

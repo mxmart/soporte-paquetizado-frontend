@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components";
+import { LoginForm, Logo } from "@/components";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <div className="bg-white w-full md:w-[500px] rounded-lg p-6 sm:px-12 shadow-lg">
-      {/* TODO: Logo */}
+      <div className="w-full flex items-center justify-center">
+        <Logo/>
+      </div>
       <h2 className="authTitle text-xl mt-6 mb-10 font-medium text-center">
         Inicie sesión en la plataforma de { process.env.NEXT_PUBLIC_APP_NAME }
       </h2>
