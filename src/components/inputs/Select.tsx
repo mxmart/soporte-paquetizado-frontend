@@ -92,7 +92,7 @@ export const Select = ({ items = [], name, placeholder, setValue, state, value, 
             <span className="text-xs" style={{ border: 'none' }}>
                 {  inputValue || placeholder }
             </span>
-            <button type='button' className={`${ isOpen ? 'rotate-180' : 'rotate-360' } ${ state === 'update' && canWrite && !disabled && 'hidden' } ${ !canWrite && 'hidden' } ${ disabled && 'hidden' } transition-all text-2xl rounded-full`}>
+            <button type='button' className={`${ isOpen ? 'rotate-180' : 'rotate-360' } ${ state === 'update' && canWrite && disabled && 'hidden' } ${ !canWrite && 'hidden' } ${ disabled && 'hidden' } transition-all text-2xl rounded-full`}>
                 <RiArrowDropDownLine />
             </button>
             <button

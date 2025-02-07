@@ -16,3 +16,4 @@ export * from './user/activeSince';
 export * from './removeQuotes';
 export * from './selectData';
 export * from './toBase64';
+export * from './areObjectEquals'

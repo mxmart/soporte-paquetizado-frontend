@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { getCoverImage } from "@/services";
 import Image from "next/image";
 import Link from "next/link";
 import { RiFacebookFill, RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
@@ -13,11 +14,11 @@ const services = [
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
 
     const year = new Date().getFullYear();
+    const coverImage = await getCoverImage();
 
   return (
     <div className="auth w-full h-auto md:h-[100vh] flex flex-col">
-    {/* TODO: Reemplazar imagen bg por imagen dinamica */}
-    <div className="w-full h-[300px] lg:h-[350px] bg-cover bg-center" style={{ backgroundImage: `url(/images/Banner_Login_V2.png)` }}>
+    <div className="w-full h-[300px] lg:h-[350px] bg-cover bg-center" style={{ backgroundImage: `url(${ coverImage })` || `url(/images/Banner_Login_V2.png)` }}>
       <div className="flex items-center justify-end p-10 text-2xl text-white gap-x-2">
         {/* TODO: Reemplazar por redes sociales de la empresa */}
         <Link href={'https://www.facebook.com/MxmartSolutions'} target="_blank">

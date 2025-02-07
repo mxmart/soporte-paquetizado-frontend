@@ -10,25 +10,25 @@ interface Props {
 //     file: file
 // }
 
-export const uploadLogo = async({ file }: Props) => {
+export const uploadCoverImage = async({ file }: Props) => {
 
     const cognito_sub = await cognitoSub();
     if( !cognito_sub ) return;
 
-    const url = `${process.env.NEXT_PUBLIC_API_CONFIG_URL}/changeLogo?cognito_sub=${ cognito_sub }`;
+    const url = `${process.env.NEXT_PUBLIC_API_CONFIG_URL}/changeCoverImage?cognito_sub=${ cognito_sub }`;
 
     try {
         
-        toast.loading("Subiendo logo...");
+        toast.loading("Subiendo imagen de portada...");
         const response = await axios.post( url, { file });
         toast.dismiss();
-        toast.success("Logo subido correctamente.");
+        toast.success("Imagen de portada actualizada.");
 
     } catch (error: any) {
         
         console.log(error);
         toast.dismiss();
-        toast.error( error?.response?.data || 'Error al cargar el logo');
+        toast.error( error?.response?.data || 'Error al cargar la imagen de portada');
 
     }
 
