@@ -19,6 +19,7 @@ const navOptions = [
 const navOptionsAdmin = [
     { title: 'Dashboard',       callback: () => {},         href: '/admin',         permission: '' },
     { title: 'Perfíl',          callback: () => {},         href: '/admin/profile', permission: '' },
+    { title: 'Configuración',   callback: () => {},   href: '/admin/platform-configuration',    permission: '' },
     { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',    permission: '' },
 ];
 

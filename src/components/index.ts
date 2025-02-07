@@ -42,3 +42,5 @@ export * from './BoxWidget';
 export * from './DashboardTitle';
 export * from './SpinLoader';
 export * from './Button';
+export * from './TabLink';
+export * from './HeaderTitle';

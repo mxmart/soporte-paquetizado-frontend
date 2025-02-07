@@ -15,9 +15,10 @@ interface Props {
     setValue: UseFormSetValue<any>;
     isSubmitted?: boolean;
     isReseted?: boolean;
+    configuration?:boolean;
 };
 
-export const UploadImage = ({ defaultImage = '/images/User_image_default.png', image = '', text, edit = false, state, name, setValue, isReseted, isSubmitted }: Props) => {
+export const UploadImage = ({ defaultImage = '/images/User_image_default.png', image = '', text, edit = false, state, name, setValue, isReseted, isSubmitted, configuration = false }: Props) => {
 
     const [ imageData, setImageData ] = useState<{ name: string, image: string, default: string }>({ name: 'Seleccione un archivo', image: image, default: defaultImage });
     const [canUpdate, setCanUpdate] = useState<boolean>( edit );
@@ -43,8 +44,8 @@ export const UploadImage = ({ defaultImage = '/images/User_image_default.png', i
     }, [ edit ]);
 
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-72 lg:max-w-80 justify-center items-center md:justify-start gap-5 upload-image">
-        <div className={`w-24 h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
+    <div className={`flex flex-col md:flex-row w-full ${configuration ? "pl-4 pr-8 ":"max-w-72 lg:max-w-96"}  justify-center items-center md:justify-start gap-5 upload-image`}>
+        <div className={`${configuration ? " w-96":"w-24"}  h-24 rounded-lg flex flex-wrap items-center justify-center overflow-hidden shadow`}>
             <Image
                 className={`rounded-xl object-contain h-full w-full`}
                 src={ imageData.image || imageData.default }
@@ -53,7 +54,7 @@ export const UploadImage = ({ defaultImage = '/images/User_image_default.png', i
                 alt={"Logo Empresa"} 
             />
         </div>
-        <div className="flex flex-col justify-evenly">
+        <div className={`flex flex-col justify-evenly ${configuration ? " w-56 " :" "}`}>
             <label className={`text-sm font-semibold mb-2 text-center md:text-start`}>{ text }</label>
             <div onClick={ canUpdate ? () => inputRef.current?.click() : () => {} } className={`w-52 h-8 rounded-lg flex items-center justify-between ${ canUpdate && 'cursor-pointer' } px-3 font-normal shadow`}>
                 <span 

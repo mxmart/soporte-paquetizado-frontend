@@ -26,6 +26,7 @@
     --color-21: #7691C4;
     --color-22: #989898;
     --color-23: #0E89B9;
+    --color-24: #3D91B2;
 
     /*Text*/
     .text-1 { color: var(--color-1); };
@@ -47,6 +48,9 @@
     .text-17 { color: var(--color-17); };
     .text-18 { color: var(--color-18); };
     .text-19 { color: var(--color-19); };
+    .text-20 { color: var(--color-19); };
+    .text-21 { color: var(--color-19); };
+    .text-24 { color: var(--color-24); };
 
     /*Backgrounds*/
     .background-1 { background-color: var(--color-1); };
@@ -313,6 +317,13 @@
     
       }
 
+      .headerTitle{
+        color:var(--color-4);
+      }
+
+      .border-color{
+        border-color: var(--color-24);
+      }
 
 
 
