@@ -4,7 +4,7 @@ import { IUser } from "@/interfaces";
 import { getUserInformation } from "@/services";
 import { redirect } from "next/navigation";
 
-type Params = Promise<{ rcdId: string }>
+type Params = Promise<{ id: string }>
 
 
 export default async function UpdateAdminPage(props: { params: Params }) {
@@ -13,7 +13,7 @@ export default async function UpdateAdminPage(props: { params: Params }) {
     if( !canAccess ) redirect('/admin');
 
     const params = await props.params;
-    const user_id = params.rcdId;
+    const user_id = params.id;
     const user = await getUserInformation({ user_id: Number(user_id)});
     if( !user ) redirect('/admin/manage-accounts');
 
