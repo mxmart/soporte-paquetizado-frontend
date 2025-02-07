@@ -17,10 +17,11 @@ const navOptions = [
 ];
 
 const navOptionsAdmin = [
-    { title: 'Dashboard',       callback: () => {},         href: '/admin',                         permission: ''                              },
-    { title: 'Perfíl',          callback: () => {},         href: '/admin/profile',                 permission: ''                              },
-    { title: 'Configuración',   callback: () => {},         href: '/admin/platform-configuration',  permission: 'platform-configuration'        },
-    { title: 'Cerrar sesión',   callback: () => logout(),   href: '/auth/login',                    permission: ''                              },
+    { title: 'Dashboard',               callback: () => {},         href: '/admin',                         permission: ''                              },
+    { title: 'Perfíl',                  callback: () => {},         href: '/admin/profile',                 permission: ''                              },
+    { title: 'Administrar cuentas',     callback: () => {},         href: '/admin/manage-accounts',         permission: 'manage-admin-accounts'         },
+    { title: 'Configuración',           callback: () => {},         href: '/admin/platform-configuration',  permission: 'platform-configuration'        },
+    { title: 'Cerrar sesión',           callback: () => logout(),   href: '/auth/login',                    permission: ''                              },
 ];
 
 export const Menu = ({ isOpen }: Props) => {
@@ -55,7 +56,7 @@ export const Menu = ({ isOpen }: Props) => {
     }, []);
 
   return (
-    <div className={`menu w-48 h-auto p-3 rounded-lg items-center justify-center absolute right-2 lg:right-0 top-12 ${ isOpen ? 'flex' : 'hidden' } rounded-md shadow-lg fade-in`}>
+    <div className={`menu w-56 h-auto p-3 rounded-lg items-center justify-center absolute right-2 lg:right-0 top-12 ${ isOpen ? 'flex' : 'hidden' } rounded-md shadow-lg fade-in`}>
         <div className='w-full flex flex-col mx-auto gap-y-2 px-5 text-sm'>
             {
                 isLoadingOptions

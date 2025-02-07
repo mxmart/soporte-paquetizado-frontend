@@ -27,13 +27,13 @@ export const updateProfileInformation = async({ user }: Props) => {
     if( !cognito_sub ) return;
     
     const url = `${process.env.NEXT_PUBLIC_API_USERS_URL}/updateUser?cognito_sub=${ cognito_sub }`;
-    const { account_holder, email, cellphone, profile_picture, position_id, role_id, company_id, id } = formatUsers( user );
+    const { account_holder, email, cellphone, profile_picture, position_id, role_id, company_id, id, cognito_sub: userCognitoSub } = formatUsers( user );
 
     try {
         
-        const customers = [{ id, account_holder, email, cellphone, profile_picture, position_id, cognito_sub }];
+        const customers = [{ id, account_holder, email, cellphone, profile_picture, position_id, cognito_sub: userCognitoSub, role_id }];
         toast.loading('Actualizando información...');
-        const response = await axios.put( url, { customers, company_id });
+        const response = await axios.put( url, { customers, company_id: company_id || 0 });
         toast.dismiss();
         toast.success('Información actualizada correctamente');
         return response?.data?.resp?.data || null;

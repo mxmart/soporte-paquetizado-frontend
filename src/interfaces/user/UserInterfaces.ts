@@ -40,3 +40,18 @@ export interface IRol {
     label:       string;
 };
 
+export interface IAdminAccount {
+    profile_picture: string;
+    account_holder:  string;
+    position_id:     number;
+    description:     string;
+    email:           string;
+    cellphone:       string;
+    role_id:         number;
+    name:            string;
+    creation_date:   Date;
+    id:              number;
+    label:           string;
+};
+
+
