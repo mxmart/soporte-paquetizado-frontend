@@ -20,6 +20,7 @@ import { toast } from 'sonner';
 interface Props {
     type: 'new' | 'update';
     userType: 'admin' | 'customer';
+    isManagingAccount?: boolean;
     user: IUser;
 };
 
@@ -27,10 +28,10 @@ type Inputs = {
     user: IUser
 };
 
-export const UserForm = ({ type, userType, user }: Props) => {
+export const UserForm = ({ type, userType, user, isManagingAccount = false }: Props) => {
 
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-    const { refresh } = useRouter();
+    const { refresh, push } = useRouter();
     const { update } = useSession();
     
     const { data: positions, isLoading: isLoadingPositions } = useQuery({ queryKey: ['positions'], queryFn: getPositions });
@@ -53,15 +54,26 @@ export const UserForm = ({ type, userType, user }: Props) => {
             if( type === 'new' ){
                 await createAccount({ user });
                 handleReset();
-            }; 
+            };
 
-            if( type === "update" ){
+            if( type === "update" && isManagingAccount ){
+                await updateProfileInformation({ user });
+                refresh();
+                push('/admin/manage-accounts');
+            };
+
+            if( type === "update" && !isManagingAccount ){
                 const profile_picture = await updateProfileInformation({ user });
+
                 if( profile_picture === null ){
                     await update({ ...user });
+                    refresh();
+
                 } else {
+
                     await update({ ...user, profile_picture });
                     refresh();
+                    
                 };
             };
 
@@ -111,6 +123,8 @@ export const UserForm = ({ type, userType, user }: Props) => {
                 setValue={ setValue }
                 items={ roles || []}
                 isLoading={ isLoadingRoles }
+                edit={ edit }
+                isManagingAccount={ isManagingAccount }
             />
         </div>
 

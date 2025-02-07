@@ -116,7 +116,7 @@ export const Table = ({ columns: columnsData, filters = false, text = 'No hay ti
       </thead>
       <tbody className='w-full text-sm'>
         { table.getRowModel().rows.map(row => (
-          <tr onMouseEnter={ () => prefetch(`${ url }/${ row.original.id }`) } onClick={ () => push(`${ url }/${ row.original.id }`) } key={row.id} className=' cursor-pointer' title={`${row.getValue("title")}`}>
+          <tr onMouseEnter={ () => prefetch(`${ url }/${ row.original.id }`) } onClick={ () => push(`${ url }/${ row.original.id }`) } key={row.id} className=' cursor-pointer' title={``}>
             { row.getVisibleCells().map((cell, index) => (
               <td key={cell.id} className={`text-center py-[6px] ${ index === 0 && 'rounded-s-lg' } ${ index === 4 && 'rounded-r-lg' } ${cell.column.id ==="ticket_status" ? "status" : ""} `}>
                 { cell.column.id ==="title" ? (String(row.getValue("title")).length > 14 ? `${String(row.getValue("title")).slice(0,14)}...` :row.getValue("title")) :

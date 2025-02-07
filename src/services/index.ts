@@ -12,6 +12,8 @@ export * from './user/getEmails';
 export * from './user/getRoles';
 export * from './user/getCellphones';
 export * from './user/updateProfileInformation';
+export * from './user/getUserInformation';
+export * from './user/getAdminAccounts';
 
 //Config
 export * from './config/uploadLogo';
