@@ -1,11 +1,11 @@
 'use client'
-import { useConfigurationStore } from '@/store/ConfigurationStore';
 import Image from 'next/image';
 import React, { useEffect } from 'react'
 import { IsLoadingLogo } from './IsLoadingLogo';
 import { usePathname, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getLogo } from '@/services';
+import { useConfigurationStore } from '@/store';
 
 export const Logo = () => {
 

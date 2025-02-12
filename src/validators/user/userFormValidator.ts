@@ -19,12 +19,24 @@ export const userFormValidator = async({ user, currentUser }: Props) => {
             reject("El campo Titular de la cuenta es obligatorio.");
         };
 
+        if( account_holder.length <= 5 ) {
+            reject("El campo Titular de la cuenta debe tener al menos 5 caracteres.");
+        };
+
+        if( account_holder.length > 50 ) {
+            reject("El campo Titular de la cuenta debe tener máximo 50 caracteres.");
+        };
+
         if (!profile_picture) {
             reject("El campo Imagen de perfil es obligatorio.");
         };
 
         if (!email) {
             reject("El campo Correo electrónico es obligatorio.");
+        };
+
+        if( email.length > 254 ) {
+            reject("El campo Correo electrónico debe tener máximo 254 caracteres.");
         };
 
         if (!cellphone) {

@@ -2,7 +2,7 @@
 import { IsLoadingLogo } from '@/components/header/IsLoadingLogo';
 import { toBase64 } from '@/helpers';
 import { uploadLogo } from '@/services';
-import { useConfigurationStore } from '@/store/ConfigurationStore';
+import { useConfigurationStore } from '@/store';
 import Image from 'next/image';
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form';
