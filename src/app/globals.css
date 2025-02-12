@@ -285,8 +285,9 @@
       /*Configuration page*/
       .configuration-page h2 { color: var(--color-25); }
 
+      .notification-toast button:hover { background-color: var(--color-2); }
 
-
+      
 
 
 

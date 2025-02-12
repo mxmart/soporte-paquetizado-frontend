@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { montserrat } from "@/config";
-import { Providers } from "@/providers/Providers";
 import { getTheme } from "@/services";
+import { Providers } from "@/providers";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {

@@ -14,6 +14,7 @@ export * from './user/getCellphones';
 export * from './user/updateProfileInformation';
 export * from './user/getUserInformation';
 export * from './user/getAdminAccounts';
+export * from './user/saveNotificationsConnection';
 
 //Config
 export * from './config/uploadLogo';

@@ -1,6 +1,5 @@
 import { Box, DashboardTitle, Options, UserForm } from "@/components";
 import { checkUserPermissions } from "@/helpers";
-import { IUser } from "@/interfaces";
 import { getUserInformation } from "@/services";
 import { redirect } from "next/navigation";
 

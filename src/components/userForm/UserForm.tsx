@@ -59,7 +59,7 @@ export const UserForm = ({ type, userType, user, isManagingAccount = false }: Pr
             if( type === "update" && isManagingAccount ){
                 await updateProfileInformation({ user });
                 refresh();
-                push('/admin/manage-accounts');
+                setTimeout(() => push('/admin/manage-accounts'), 1000);
             };
 
             if( type === "update" && !isManagingAccount ){
