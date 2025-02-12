@@ -1,6 +1,7 @@
 'use client'
 
 import { IUserStats } from '@/interfaces';
+import { useNotificationsStore } from '@/store';
 import React from 'react'
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
  
 export const BoxWidget = ({ BoxItems, type }: Props) => {
 
+    const notifications = useNotificationsStore( store => store.unreadedNotifications );
 
     return (
         <div className='w-full mb-10'>
@@ -32,7 +34,7 @@ export const BoxWidget = ({ BoxItems, type }: Props) => {
                 </div>
 
                 <div className={`card4 w-[150px] md:w-44 px-2 py-5 flex  flex-col items-center gap-2 rounded-lg `}>
-                    <p className='text-lg md:text-3xl'>{ 0 }</p>
+                    <p className='text-lg md:text-3xl'>{ notifications || 0 }</p>
                     <p className='text-xs text-center'>Notificaciones</p>
                 </div>
 

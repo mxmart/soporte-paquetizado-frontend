@@ -41,6 +41,11 @@
 
     .header span { color: var(--color-1); }
     .header button { color: var(--color-1); }
+    .header .bubble { background-color: var(--color-1); }
+    .header .bubble span { background-color: var(--color-1); }
+    .header .bubble p { color: var(--color-9); }
+    .header p { color: var(--color-1); }
+    .header .icon {color: var(--color-1); }
 
     .menu { background-color: var(--color-15); }
     .menu span { color: var(--color-1); }

@@ -17,6 +17,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
     "cookies-next": "^5.0.2",
+    "date-fns": "^4.1.0",
     "jwt-decode": "^4.0.0",
     "moment-timezone": "^0.5.47",
     "next": "15.1.4",

@@ -44,3 +44,4 @@ export * from './DashboardTitle';
 export * from './SpinLoader';
 export * from './Button';
 export * from './Tab';
+export * from './Pagination';

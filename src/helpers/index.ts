@@ -6,6 +6,9 @@ export * from './auth/cleanText';
 //Ticket
 export * from './ticket/formatDate';
 
+//Notifications
+export * from './notifications/formatNotificationDate';
+
 //User
 export * from './user/checkUserPermissions';
 export * from './user/formatUsers';
