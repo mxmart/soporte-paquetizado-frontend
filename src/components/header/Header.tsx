@@ -3,6 +3,7 @@ import React from 'react'
 import { HeaderUser } from './HeaderUser'
 import { usePathname, useRouter } from 'next/navigation';
 import { Logo } from './Logo';
+import { Notifications } from './Notifications';
 
 interface Props {
   name: string;
@@ -24,9 +25,9 @@ export const Header = ({ image, userType, name }: Props) => {
         <div className='p-4 h-24 w-[250px] rounded-xl shadow bg-white flex items-center justify-center'>
             <Logo/>
         </div>
-        <div className='header p-4 h-24 w-full rounded-xl flex items-center justify-end'>
-            {/* TODO: Header */}
-            <HeaderUser name={ name } image={ image }/>
+        <div className='header p-4 h-24 w-full rounded-xl flex items-center justify-end gap-x-5'>
+          <Notifications />
+          <HeaderUser name={ name } image={ image }/>
         </div>
     </div>
     </>

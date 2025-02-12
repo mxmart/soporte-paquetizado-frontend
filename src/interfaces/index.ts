@@ -6,3 +6,6 @@ export * from "./user/UserInterfaces";
 
 //Tickets
 export * from './tickets/TicketsInterfaces';
+
+//Notifications
+export * from './notifications/NotificationsInterfaces';
