@@ -3,7 +3,7 @@ export interface INotification {
     notification_text:   string;
     url:                 string;
     creation_date:       string;
-    readed:              boolean;
+    read:              boolean;
     readby:           string;
 };
   
