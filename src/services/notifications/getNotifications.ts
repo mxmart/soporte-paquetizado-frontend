@@ -22,7 +22,7 @@ export const getNotifications = async({ page_number = "1", filter = "all" }: Pro
 
     } catch (error: any) {
         console.log(error);
-        toast.error(error.response.data.resp.message || 'Hubo un error al obtener las notificaciones');
+        toast.error(error?.response?.data?.resp?.message || 'Hubo un error al obtener las notificaciones');
     }
 
 };

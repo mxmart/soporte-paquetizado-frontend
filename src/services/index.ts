@@ -25,3 +25,4 @@ export * from './config/getTheme';
 
 //Notifications
 export * from './notifications/getNotifications';
+export * from './notifications/readNotification';

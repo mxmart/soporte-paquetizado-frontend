@@ -1,6 +1,7 @@
 "use client";
 import { calculateTimeSince } from "@/helpers";
 import { INotification } from "@/interfaces";
+import { readNotification } from "@/services";
 import { useNotificationsStore } from "@/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ interface Props {
 export const Notification = ({ notification }: Props) => {
 
     const { push, prefetch } = useRouter();
-    const [readed, setReaded] = useState( notification.readed );
+    const [readed, setReaded] = useState( notification.read );
     const setNotificationsCount = useNotificationsStore( state => state.setNotificationsCount );
     const unreadedNotifications = useNotificationsStore( state => state.unreadedNotifications );
 
@@ -25,8 +26,9 @@ export const Notification = ({ notification }: Props) => {
       if( readed ) return;
       setNotificationsCount( unreadedNotifications - 1 );
       setReaded( true );
-      // readNotification({ notification_id: String(notification!.id) });
-    };
+      const notification_id = notification.id;
+      readNotification({ notification_id });
+    }; 
 
   return (
     <div 

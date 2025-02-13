@@ -19,6 +19,10 @@ export const Notifications = () => {
         {
           isLoadingNotifications
           ? <NotificationSkeleton/>
+          : notifications?.length === 0 || !notifications
+          ? <div className="w-full p-3 h-44 flex items-center justify-center notification-card rounded-lg">
+              <span className="notification-info font-medium">No hay notificaciones</span>
+          </div>
           : ( notifications?.map(( notification ) => {
             return (
               <Notification
