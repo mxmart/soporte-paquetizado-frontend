@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, CheckSelect, Input, Select, Suggestions } from '..';
 import { useForm } from 'react-hook-form';
 import { UploadFiles } from './UploadFiles';
+import { useTicketStore } from '@/store';
 
 interface Props {
     userType: "admin" | "customer";
@@ -11,6 +12,8 @@ interface Props {
 export const TicketForm = ({ userType }: Props) => {
 
     const { setValue, handleSubmit, register, watch, getValues, reset } = useForm();
+
+    const createChatRoom = useTicketStore( state => state.createChatRoom );
     
     return (
         <form  className='flex flex-wrap gap-5 justify-center w-full mt-8'>
@@ -76,7 +79,7 @@ export const TicketForm = ({ userType }: Props) => {
 
             <div className="flex items-end mt-10 w-full justify-end gap-x-2 pb-2">
                 <Button text='Cancelar' type='button'/>
-                <Button disabled text='Guardar' type='submit'/>
+                <Button text='Guardar' onClick={() => createChatRoom("1")} type='button'/>
             </div>
         </form>
     )
