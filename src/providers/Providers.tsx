@@ -35,7 +35,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
                         fontSize: 14, textAlign: 'center'
                     }}
                 />
-                <ToasterNotification
+                {/* <ToasterNotification
                     position="bottom-right"
                     reverseOrder={false}
                     toastOptions={{
@@ -44,7 +44,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
                         fontSize: 14, textAlign: 'center'
                     }
                     }}
-                />
+                /> */}
                 <ReactQueryDevtools/>
                 { children }
             </SessionProvider>
