@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function UpdatePasswordPage() {
   return (
     <div className="bg-white w-full md:w-[500px] rounded-lg p-6 sm:px-12 shadow-lg">
-      <div className="w-52 h-24 flex items-center justify-center mx-auto">
+      {/* <div className="w-52 h-24 flex items-center justify-center mx-auto">
         <Logo/>
       </div>
       <h2 className="authTitle text-xl mt-6 mb-4 font-semibold">
@@ -23,7 +23,7 @@ export default function UpdatePasswordPage() {
         Escriba una nueva contraseña para ingresar a su interfaz
         y confírmarla en el segundo espacio.
       </span>
-      <UpdatePasswordForm/>
+      <UpdatePasswordForm/> */}
     </div>
   );
 }
