@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react'
-import { useNotificationsStore, useUserStore } from '@/store';
+import { useNotificationsStore, useTicketStore, useUserStore } from '@/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SessionProvider } from 'next-auth/react';
@@ -14,10 +14,12 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 
     const user = useUserStore( state => state.user );
     const setSocketNotifications = useNotificationsStore( state => state.setSocketNotifications );
+    const setSocketTicket = useTicketStore( state => state.setSocketTicket );
 
     useEffect(() => {
         if( user?.cognito_sub !== '' ){
           setSocketNotifications();
+          setSocketTicket();
         };
     }, []);
 

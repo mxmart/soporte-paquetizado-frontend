@@ -1,11 +1,13 @@
 import { formatDate } from '@/helpers'
+import { IMessage } from '@/interfaces'
 import React from 'react'
 
 interface Props {
-  message: any
+  message: IMessage
 };
 
 export const Event = ({ message }: Props) => {
+
   return (
     <div className="w-full flex p-2 items-baseline justify-between mb-5 event">
         <div className="w-[85%] h-[0.5px] mb-4 line"/>

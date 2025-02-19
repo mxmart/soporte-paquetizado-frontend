@@ -2,11 +2,13 @@ import { formatDate } from '@/helpers'
 import Image from 'next/image'
 import React from 'react'
 import { File } from './File'
+import { IMessage } from '@/interfaces'
 interface Props { 
-  message: any
+  message: IMessage
 };
 
 export const Message = ({ message }: Props) => {
+
   return (
     <div className="flex mb-3 mt-3 justify-start w-full px-2">
         <Image
