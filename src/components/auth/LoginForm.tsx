@@ -29,7 +29,7 @@ export const LoginForm = () => {
         return;
       };
 
-      toast.error( cleanText( state ));
+      // toast.error( cleanText( state ));
     }, [ state ]);
     
   return (
